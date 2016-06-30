@@ -3,7 +3,16 @@
 
 $(document).ready(function() {
     setOrientationListener();
+    changePage('home.html?v=1');
 });
+
+function changePage(fileName) {
+    $('.content_container').animate({opacity:0}, 500, function(){
+        $('.content_loading_container').load('assets/content/'+fileName, function(){
+            $('.content_container').delay(250).animate({opacity:1},500);
+        });
+    });
+}
 
 function setOrientationListener(){
 	rotationInterval = setInterval( function(){ updateOrientation(); }, 500 );
